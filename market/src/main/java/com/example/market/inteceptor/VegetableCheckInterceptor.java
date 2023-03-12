@@ -16,8 +16,8 @@ public class VegetableCheckInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("VegetableCheckInterceptor - preHandle");
-        log.info("##### prehandler request.Header session: " + request.getHeader("accessToken") + "subject:vegetable");
-        jwtProvider.parseJwtToken("Bearer " + request.getHeader("accessToken"), "vegetable");
+        log.info("##### prehandler request.Header session: " + request.getHeader("Authorization") + "subject:vegetable");
+        jwtProvider.parseJwtToken("Bearer " + request.getHeader("Authorization"), "vegetable");
         return true;
     }
 }

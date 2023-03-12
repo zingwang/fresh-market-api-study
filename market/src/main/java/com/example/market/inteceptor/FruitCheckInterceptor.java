@@ -16,8 +16,8 @@ public class FruitCheckInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("FruitCheckInterceptor - preHandle");
-        log.info("##### prehandler request.Header session: " + request.getHeader("accessToken") + "subject:fruit");
-        jwtProvider.parseJwtToken("Bearer " + request.getHeader("accessToken"), "fruit");
+        log.info("##### prehandler request.Header session: " + request.getHeader("Authorization") + "subject:fruit");
+        jwtProvider.parseJwtToken("Bearer " + request.getHeader("Authorization"), "fruit");
         return true;
     }
 }
