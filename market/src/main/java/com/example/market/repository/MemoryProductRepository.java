@@ -1,12 +1,10 @@
 package com.example.market.repository;
 
 import com.example.market.domain.Product;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Repository
 public class MemoryProductRepository implements ProductRepository {
     private static Map<Long, Product> store= new HashMap<>();
     private long sequence = 0L;

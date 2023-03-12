@@ -1,5 +1,6 @@
 package com.example.market.repository;
 import com.example.market.domain.Product;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
