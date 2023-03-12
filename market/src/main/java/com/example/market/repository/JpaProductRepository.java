@@ -2,7 +2,9 @@ package com.example.market.repository;
 
 import com.example.market.domain.Product;
 import jakarta.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -10,15 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
+@Primary
 public class JpaProductRepository implements ProductRepository {
 
     private final EntityManager em;
-
-
-    public JpaProductRepository(EntityManager em){
-        this.em=em;
-    }
-
     @Override
     public Optional<Product> findById(Long id) {
         Product Product= em.find(Product.class,id);
