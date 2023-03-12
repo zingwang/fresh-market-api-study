@@ -38,13 +38,13 @@ public class JwtProvider {
     public Claims parseJwtToken(String token, String category) {
         try {
             token = BearerRemove(token); // Bearer 제거
-            System.out.println("token: " +token);
+            System.out.println("token: " + token);
             Claims claims = Jwts.parser()
                     .setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes()))
                     .parseClaimsJws(token)
                     .getBody();
 
-            if(!claims.getSubject().equals(category)) {
+            if (!claims.getSubject().equals(category)) {
                 // category에 맞지 않는 token
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad Request");
             }
