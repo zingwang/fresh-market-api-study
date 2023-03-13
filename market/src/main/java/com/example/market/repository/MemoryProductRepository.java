@@ -24,8 +24,8 @@ public class MemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findByName(String name) {
-        return store.values().stream().filter(product -> product.getName().equals(name))
+    public Optional<Product> findByName(String name,String category) {
+        return store.values().stream().filter(product -> product.getName().equals(name) && product.getCategory().equals(category))
                 .findAny();
     }
     @Override

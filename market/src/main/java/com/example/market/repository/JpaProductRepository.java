@@ -3,9 +3,7 @@ package com.example.market.repository;
 import com.example.market.domain.Product;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -47,10 +45,11 @@ public class JpaProductRepository implements ProductRepository {
 
     }
     @Override
-    public Optional<Product> findByName(String name) {
+    public Optional<Product> findByName(String name, String category) {
 
-        List<Product> result= em.createQuery("select p from Product p where p.name=:name", Product.class)
+        List<Product> result= em.createQuery("select p from Product p where p.name=:name and p.category=:category ", Product.class)
                 .setParameter("name",name)
+                .setParameter("category",category)
                 .getResultList();
 
         return result.stream().findAny();
