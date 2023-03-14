@@ -2,11 +2,9 @@ package com.example.market.service;
 
 import com.example.market.domain.Product;
 import com.example.market.dto.ProductDTO;
-import com.example.market.dto.TokenDTO;
 import com.example.market.inteceptor.JwtProvider;
 import com.example.market.mapper.ProductMapper;
 import com.example.market.repository.ProductRepository;
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -40,15 +38,11 @@ public class ProductService {
         if (!product.isPresent()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad Request");
         }
-        //productMapper.toDTO(product);
         return productMapper.toDTO(product);
     }
 
     public String getToken(String subject){
         return jwtProvider.createToken(subject);
-    }
-    public Claims checkToken(TokenDTO dto){
-       return jwtProvider.parseJwtToken("Bearer "+ dto.getToken(),dto.getCategory()); // 토큰 검증
     }
 
 }

@@ -54,7 +54,7 @@ class ProductControllerTest {
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.code").value(0))
                 .andExpect(jsonPath("$.message").value("성공"))
-                .andExpect(jsonPath("$.data").value(token));
+                .andExpect(jsonPath("$.data.accessToken").value(token));
 
         //then
         verify(productService, times(1)).getToken("fruit");

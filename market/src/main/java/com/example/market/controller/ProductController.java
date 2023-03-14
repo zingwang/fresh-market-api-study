@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RequiredArgsConstructor
 @RestController
 public class ProductController {
@@ -20,7 +23,9 @@ public class ProductController {
     @GetMapping("/v1/product/token/fruit")
     public ResponseEntity<?>  getFruitToken() {
         // 과일 token 획득
-        ResponseEntity<BaseResponse> rtn = new ResponseEntity<>(new BaseResponse(true, 0, "성공",  productService.getToken("fruit")), HttpStatus.OK);
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("accessToken", productService.getToken("fruit"));
+        ResponseEntity<BaseResponse> rtn = new ResponseEntity<>(new BaseResponse(true, 0, "성공", data) , HttpStatus.OK);
         return rtn;
     }
 
@@ -39,7 +44,7 @@ public class ProductController {
             "토큰이 없거나 지정된 이름에 해당하는 정보가 없을 경우 400 응답을 반환합니다.")
 
     @GetMapping("/v1/product/fruit/item")
-    public ResponseEntity<?> getFruitPrice(@RequestParam("name") String name) {
+    public ResponseEntity<?> getFruitPrice(@RequestParam(name = "name", required = false) String name) {
         ResponseEntity<BaseResponse> rtn = new ResponseEntity<>(new BaseResponse(true, 0, "성공", productService.findByName(name,"fruit")), HttpStatus.OK);
         return rtn;
     }
@@ -54,16 +59,16 @@ public class ProductController {
     }
 
     @SecurityRequirement(name = "Authorization")
-    @Operation(tags = "Vegetable", summary = "Vegetable", description = "채소 목록을 조회합니다.\n" +
+    @Operation(tags = "Vegetable", summary = "채소 목록 조회", description = "채소 목록을 조회합니다.\n" +
             "header 내 access token이 요구됩니다.")
     @GetMapping("/v1/product/vegetable/list")
     public ResponseEntity<?> getVegetables() {
-        ResponseEntity<BaseResponse> rtn = new ResponseEntity<>(new BaseResponse(true, 0, "성공", productService.findProductsByCategory("vegetable")), HttpStatus.OK);
+        ResponseEntity<BaseResponse> rtn = new ResponseEntity<>(new BaseResponse(true, 0, "성공",productService.findProductsByCategory("vegetable")), HttpStatus.OK);
         return rtn;
     }
 
     @SecurityRequirement(name = "Authorization")
-    @Operation(tags = "Vegetable", summary = "Vegetable", description = "이름이 지정된 채소의 가격을 조회합니다.\n" +
+    @Operation(tags = "Vegetable", summary = "채소 가격 조회", description = "이름이 지정된 채소의 가격을 조회합니다.\n" +
             "header 내 access token이 요구됩니다.\n" +
             "\n" +
             "토큰이 없거나 지정된 이름에 해당하는 정보가 없을 경우 400 응답을 반환합니다.")

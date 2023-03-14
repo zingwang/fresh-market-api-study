@@ -5,8 +5,8 @@ async function getFruit(searchInput, url) {
         //과일 토큰획득
         const response = await axios.get('/v1/product/token/fruit')
             .then(response => {
-                console.log(response.data.data);
-                token = response.data.data;
+                console.log(response.data.data.accessToken);
+                token = response.data.data.accessToken;
             })
             .catch(error => {
                 console.error(error);
