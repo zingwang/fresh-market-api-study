@@ -1,7 +1,6 @@
-package com.example.market.mapper;
+package com.example.market.dto;
 
 import com.example.market.domain.Product;
-import com.example.market.dto.ProductDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class ProductMapper {
+public class ProductConverter {
     public ProductDTO toDTO(Optional<Product> product) {
         ProductDTO productDTO = new ProductDTO();
         productDTO.setName(product.get().getName());
