@@ -2,8 +2,8 @@ package com.example.market.service;
 
 import com.example.market.domain.Product;
 import com.example.market.dto.ProductDTO;
-import com.example.market.inteceptor.JwtProvider;
-import com.example.market.mapper.ProductMapper;
+import com.example.market.interceptor.JwtProvider;
+import com.example.market.dto.ProductConverter;
 import com.example.market.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,12 +21,12 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final JwtProvider jwtProvider;
-    private final ProductMapper productMapper ;
+    private final ProductConverter productConverter;
     public List<Product> findAll(){
         return  productRepository.findAll();
     }
     public List<String> findProductsByCategory(String category){
-        return productMapper.toList(productRepository.findAllByCategory(category));
+        return productConverter.toList(productRepository.findAllByCategory(category));
     }
     public Product save(Product product){
         return  productRepository.save(product) ;
@@ -38,7 +38,7 @@ public class ProductService {
         if (!product.isPresent()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad Request");
         }
-        return productMapper.toDTO(product);
+        return productConverter.toDTO(product);
     }
 
     public String getToken(String subject){

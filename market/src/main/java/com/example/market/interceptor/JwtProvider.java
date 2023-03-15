@@ -1,4 +1,4 @@
-package com.example.market.inteceptor;
+package com.example.market.interceptor;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;

@@ -1,6 +1,6 @@
 package com.example.market.config;
-import com.example.market.inteceptor.FruitCheckInterceptor;
-import com.example.market.inteceptor.VegetableCheckInterceptor;
+import com.example.market.interceptor.FruitCheckInterceptor;
+import com.example.market.interceptor.VegetableCheckInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

@@ -1,4 +1,4 @@
-package com.example.market.inteceptor;
+package com.example.market.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
