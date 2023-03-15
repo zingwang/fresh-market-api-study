@@ -1,8 +1,8 @@
 package com.example.market.controller;
 
 import com.example.market.domain.Product;
-import com.example.market.inteceptor.JwtProvider;
-import com.example.market.mapper.ProductMapper;
+import com.example.market.interceptor.JwtProvider;
+import com.example.market.dto.ProductConverter;
 import com.example.market.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ class ProductControllerTest {
     private ProductService productService;
 
     @MockBean
-    private ProductMapper productMapper;
+    private ProductConverter productConverter;
 
     @BeforeEach
     void setUp() {

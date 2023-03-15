@@ -27,7 +27,7 @@ async function getFruit(searchInput, url) {
             .then(function (response) {
                 console.log(response.data); // 응답 데이터 출력
                 let price = document.getElementsByClassName("price")[0];
-                price.innerText = response.data.data.price;
+                price.innerText = response.data.data.price + "원";
             })
             .catch(function (error) {
                 console.log(error);
